@@ -1,0 +1,56 @@
+@charset "UTF-8";
+	.w3-button{
+		color: rgb(230, 255, 249);
+		font-weight: bold;
+		background-color: RGB(0, 155, 119);
+	}
+	
+	.w3-bar-item.w3-button {
+    	width: 250px !important;
+	}
+	
+	.w3-container{
+		display: flex;
+		justify-content: center;
+	}
+	
+    table{
+            border: solid 1px;
+            border-collapse: collapse;
+            width: 900px;
+            text-align: center;
+            font-size: large;
+            margin-top: 10px;
+     }
+     
+     .w3-table {
+     	width: 100%;
+     }
+	
+	th{
+     	background-color: RGB(0, 155, 119);
+     	color: white;
+     }
+     
+     h2{
+     	color: RGB(0, 155, 119);
+     	font-weight: bold;
+     }
+     
+     form{
+     	margin-top: 10px;
+     	margin-bottom: 10px;
+     }
+     
+     label{
+     	min-width: 120px;
+     	display: inline-block;
+     	color: white;
+     }
+     
+     select{
+     	background-color: white;
+     	
+     }
+     
+     
