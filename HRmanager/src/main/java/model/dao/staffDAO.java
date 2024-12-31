@@ -12,6 +12,8 @@ public class staffDAO{
 	String nameField = "Hoten";
 	String departmentIDfield = "IDPB";
 	String addressField = "Diachi";
+	String foreignKey = "staffID";
+	String foreignTable = "chamcong";
 	public ArrayList<staff> view() throws SQLException {
         ArrayList<staff> List = new ArrayList<>();
         database data = new database();
@@ -79,7 +81,7 @@ public class staffDAO{
 	
 	public void deleteMany(String id[]) throws SQLException {
 		database data = new database();
-        data.dropMany(this.table, this.idField, id);
+        data.dropMany(this.table, this.idField, id, this.foreignKey, this.foreignTable);
 	}
 	
 	public ArrayList<String> getListOfField(String field) throws SQLException {
