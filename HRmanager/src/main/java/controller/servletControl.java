@@ -10,6 +10,7 @@ import model.bo.loginBO;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -21,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @WebServlet({"/home", "/logout","/login","/staffList", "/departmentList", "/searchStaff", "/deleteEach",
-	"/deleteMany", "/updateDepartment", "/addStaff"})
+	"/deleteMany", "/updateDepartment", "/addStaff","/timekeepingByTime", "/timekeepingByStaff"})
 
 public class servletControl extends HttpServlet{
 	private static final long serialVersionUID = 1L;
@@ -297,6 +298,31 @@ public class servletControl extends HttpServlet{
 				}
 				
 			}
+			getServletContext().getRequestDispatcher(destination)
+			.forward(request, response);
+			break;
+		}
+		
+		case "/timekeepingByTime":{
+			destination = "/searchTimekeepingByTime.jsp";
+			String startDateInput = request.getParameter("startDate");
+			String endDateInput = request.getParameter("endDate");
+			if(startDateInput != null && endDateInput != null) {
+				LocalDate startDate = LocalDate.parse(startDateInput);
+				LocalDate endDate = LocalDate.parse(endDateInput);
+				ArrayList<timeKeeping> timeKeepingList;
+				try {
+					timeKeepingList = tkbo.searchByTime(startDate, endDate);
+					request.setAttribute("timeKeepingList", timeKeepingList);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+			request.setCharacterEncoding("UTF-8");
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html; charset=UTF-8");
 			getServletContext().getRequestDispatcher(destination)
 			.forward(request, response);
 			break;

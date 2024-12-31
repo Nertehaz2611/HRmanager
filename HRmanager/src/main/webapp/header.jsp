@@ -20,14 +20,15 @@
 				<a href='<%=request.getContextPath()%>/staffList' class="w3-bar-item w3-button" style="width: 200px"><i class="fa fa-bars"></i> Danh sách nhân viên</button></a>
 				<a href='<%=request.getContextPath()%>/searchStaff' class="w3-bar-item w3-button"><i class="fa fa-search"></i> Tìm kiếm nhân viên</button></a>
 				<a href='<%=request.getContextPath()%>/addStaff' class="w3-bar-item w3-button"><i class="fa fa-plus"></i> Thêm nhân viên</button></a>
-				<a href='' class="w3-bar-item w3-button"><i class="fa fa-pencil"></i> Chỉnh sửa thông tin nhân viên</button></a>
+				<a href='<%=request.getContextPath()%>/editStaff' class="w3-bar-item w3-button"><i class="fa fa-pencil"></i> Chỉnh sửa thông tin nhân viên</button></a>
 				<a href='<%=request.getContextPath()%>/deleteMany' class="w3-bar-item w3-button"><i class="fa fa-trash"></i> Xoá nhân viên</button></a>
 			</div>
 		</div>
 		<div class="w3-dropdown-hover">
 			<button class="w3-button"><i class="fa fa-calendar"></i> Chấm công</button>
 			<div class="w3-dropdown-content w3-bar-block w3-border">
-				<a href='<%=request.getContextPath()%>/staffList' class="w3-bar-item w3-button" style="width: 200px"><i class="fa fa-bars"></i> Danh sách nhân viên</button></a>
+				<a href='<%=request.getContextPath()%>/timekeepingByTime' class="w3-bar-item w3-button" style="width: 200px"><i class="fa fa-clock-o "></i> Tra cứu theo thời gian</button></a>
+				<a href='<%=request.getContextPath()%>/timeKeepingByStaff' class="w3-bar-item w3-button" style="width: 200px"><i class="fa fa-user-circle-o"></i> Tra cứu theo nhân viên</button></a>
 			</div>
 		</div>
 		
