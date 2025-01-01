@@ -16,4 +16,8 @@ public class timeKeepingBO{
 	public ArrayList<timeKeeping> searchByTime(LocalDate startDate, LocalDate endDate) throws SQLException{
 		return tkdao.searchByTime(startDate, endDate);
 	}
+	
+	public ArrayList<timeKeeping> searchByStaff(String staffID) throws SQLException{
+		return tkdao.searchByStaff(staffID);
+	}
 }

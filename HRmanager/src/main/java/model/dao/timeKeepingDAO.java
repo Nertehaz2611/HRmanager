@@ -58,4 +58,24 @@ public class timeKeepingDAO{
 		return List;
 	}
 	
+	public ArrayList<timeKeeping> searchByStaff(String staffID) throws SQLException{
+		ArrayList<timeKeeping> List = new ArrayList<>();
+		database data = new database();
+		try (ResultSet resultSet = data.selectOrder(this.table, this.idField)) {
+            while (resultSet.next()) {
+            	if(staffID.equals(resultSet.getString(2))) {
+            		timeKeeping tk = new timeKeeping();
+            		tk.setID(resultSet.getInt(1));
+            		tk.setStaffID(resultSet.getString(2));
+            		tk.setTime(resultSet.getString(3));
+            		tk.setStaff(stdao.getEach(resultSet.getString(2)));
+            		List.add(tk);
+            	}
+            }
+        } catch (SQLException e) {
+            throw new SQLException("Lỗi khi lấy danh sách sinh viên: " + e.getMessage(), e);
+        }
+		return List;
+	}
+	
 }

@@ -28,7 +28,7 @@
 			<button class="w3-button"><i class="fa fa-calendar"></i> Chấm công</button>
 			<div class="w3-dropdown-content w3-bar-block w3-border">
 				<a href='<%=request.getContextPath()%>/timekeepingByTime' class="w3-bar-item w3-button" style="width: 200px"><i class="fa fa-clock-o "></i> Tra cứu theo thời gian</button></a>
-				<a href='<%=request.getContextPath()%>/timeKeepingByStaff' class="w3-bar-item w3-button" style="width: 200px"><i class="fa fa-user-circle-o"></i> Tra cứu theo nhân viên</button></a>
+				<a href='<%=request.getContextPath()%>/timekeepingByStaff' class="w3-bar-item w3-button" style="width: 200px"><i class="fa fa-user-circle-o"></i> Tra cứu theo nhân viên</button></a>
 			</div>
 		</div>
 		

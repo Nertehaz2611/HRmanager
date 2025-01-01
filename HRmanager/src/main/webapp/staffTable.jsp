@@ -1,4 +1,4 @@
-<%@ page import="java.util.ArrayList, model.bean.staff"%>
+<%@ page import="java.util.ArrayList, model.bean.staff, java.time.LocalDate"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -42,7 +42,27 @@
 				<td><%=postUpdateList.get(i).getDepartmentID()%></td>
 				<td><%=postUpdateList.get(i).getAddress()%></td>
 				<td><%=postUpdateList.get(i).getLastTimeKeeping()%></td>
-				<td><%=postUpdateList.get(i).isTimeKeepingStatus() ? "Hoàn thành" : "Chưa chấm công"%></td>
+				<%
+				if (postUpdateList.get(i).getLastTimeKeeping() != null) {
+					String dateString = postUpdateList.get(i).getLastTimeKeeping().split(" ")[0];
+					LocalDate date = LocalDate.parse(dateString);
+					if (!date.isEqual(LocalDate.now())) {
+				%>
+				<td>Chưa chấm công</td>
+				<%
+				} else {
+				%>
+				<td>Hoàn thành</td>
+				<%
+				}
+				%>
+				<%
+				} else {
+				%>
+				<td>Chưa chấm công</td>
+				<%
+				}
+				%>
 			</tr>
 			<%
 			}
@@ -73,7 +93,27 @@
 				<td><%=staffList.get(i).getDepartmentID()%></td>
 				<td><%=staffList.get(i).getAddress()%></td>
 				<td><%=staffList.get(i).getLastTimeKeeping()%></td>
-				<td><%=staffList.get(i).isTimeKeepingStatus() ? "Hoàn thành" : "Chưa chấm công"%></td>
+				<%
+				if (staffList.get(i).getLastTimeKeeping() != null) {
+					String dateString = staffList.get(i).getLastTimeKeeping().split(" ")[0];
+					LocalDate date = LocalDate.parse(dateString);
+					if (!date.isEqual(LocalDate.now())) {
+				%>
+				<td>Chưa chấm công</td>
+				<%
+				} else {
+				%>
+				<td>Hoàn thành</td>
+				<%
+				}
+				%>
+				<%
+				} else {
+				%>
+				<td>Chưa chấm công</td>
+				<%
+				}
+				%>
 			</tr>
 			<%
 			}

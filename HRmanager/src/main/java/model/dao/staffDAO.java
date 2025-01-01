@@ -47,6 +47,8 @@ public class staffDAO{
                 st.setName(resultSet.getString(2));
                 st.setDepartmentID(resultSet.getString(3));
                 st.setAddress(resultSet.getString(4));
+                st.setLastTimeKeeping(resultSet.getString(5));
+                st.setTimeKeepingStatus(resultSet.getBoolean(6));
                 List.add(st);
             }
         } catch (SQLException e) {

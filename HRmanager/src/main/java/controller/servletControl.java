@@ -327,6 +327,34 @@ public class servletControl extends HttpServlet{
 			.forward(request, response);
 			break;
 		}
+		
+		case "/timekeepingByStaff":{
+			destination = "/timekeepingByStaff.jsp";
+			String staffID = request.getParameter("staffID");
+			if(staffID == null) {
+				try {
+					request.setAttribute("staffList", stbo.view());
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+			else {
+				try {
+					request.setAttribute("searchResult", tkbo.searchByStaff(staffID));
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			request.setCharacterEncoding("UTF-8");
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html; charset=UTF-8");
+			getServletContext().getRequestDispatcher(destination)
+			.forward(request, response);
+			break;
+		}
 			
 		}
 	}
