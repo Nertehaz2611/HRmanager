@@ -65,4 +65,8 @@ public class staffBO{
 		stdao.addStaff(ID, name, departmentID, address);
 	}
 	
+	public void editStaff(String oldID, String newID, String newName, String newDepartmentID, String newAddress) throws SQLException{
+		stdao.editStaff(oldID, newID, newName, newDepartmentID, newAddress);
+	}
+	
 }

@@ -116,4 +116,9 @@ public class staffDAO{
 		database data = new database();
 		data.insert(this.table, ID, name, departmentID, address);
 	}
+	
+	public void editStaff(String oldID, String newID, String newName, String newDepartmentID, String newAddress) throws SQLException {
+		database data = new database();
+		data.editStaff(oldID, newID, newName, newDepartmentID, newAddress);
+	}
 }

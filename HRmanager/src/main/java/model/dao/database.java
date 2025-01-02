@@ -169,5 +169,23 @@ public class database {
 			throw new SQLException("Error updating department and staff: " + e.getMessage(), e);
 		}
 	}
+	
+	public void editStaff(String oldID, String newID, String newName, String newDepartmentID, String newAddress) throws SQLException {
+		String sql = "UPDATE nhanvien SET IDNV = ?, Hoten = ?, IDPB = ?, Diachi = ? WHERE IDNV = ?";
+
+		try (Connection conn = getConnection();
+				PreparedStatement stmt = conn.prepareStatement(sql)) {
+			stmt.setString(1, newID);
+			stmt.setString(2, newName);
+			stmt.setString(3, newDepartmentID);
+			stmt.setString(4, newAddress);
+			stmt.setString(5, oldID);
+			stmt.executeUpdate();
+
+			System.out.println("Update department and staff successful!");
+		} catch (SQLException e) {
+			throw new SQLException("Error updating department and staff: " + e.getMessage(), e);
+		}
+	}
 
 }

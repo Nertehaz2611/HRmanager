@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @WebServlet({"/home", "/logout","/login","/staffList", "/departmentList", "/searchStaff", "/deleteEach",
-	"/deleteMany", "/updateDepartment", "/addStaff","/timekeepingByTime", "/timekeepingByStaff"})
+	"/deleteMany", "/updateDepartment", "/addStaff","/timekeepingByTime", "/timekeepingByStaff", "/editStaff"})
 
 public class servletControl extends HttpServlet{
 	private static final long serialVersionUID = 1L;
@@ -351,6 +351,70 @@ public class servletControl extends HttpServlet{
 			request.setCharacterEncoding("UTF-8");
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("text/html; charset=UTF-8");
+			getServletContext().getRequestDispatcher(destination)
+			.forward(request, response);
+			break;
+		}
+		
+		case "/editStaff":{
+			if(sessionUsername == null) {
+				destination = "/login";
+			}
+			else {
+				request.setCharacterEncoding("UTF-8");
+				response.setCharacterEncoding("UTF-8");
+				response.setContentType("text/html; charset=UTF-8");
+				String staffID = request.getParameter("staffID");
+				request.setAttribute("caption", "Chỉnh sửa thông tin nhân viên");
+				String idInput = request.getParameter("idInput");
+				String nameInput = request.getParameter("nameInput");
+				String departmentIDinput = request.getParameter("departmentIDinput");
+				String addressInput = request.getParameter("addressInput");
+				String originID = request.getParameter("originID");
+				if(staffID == null) {
+					if(idInput != null && nameInput != null
+							&& departmentIDinput != null && addressInput != null) {
+						try {
+								if(stbo.checkExistedID(idInput)) {
+									if(!idInput.equals(originID)) {
+										request.setAttribute("idInputed", idInput);
+										request.setAttribute("nameInputed", nameInput);
+										request.setAttribute("departmentIDinputed", departmentIDinput);
+										request.setAttribute("addressInputed", addressInput);
+										request.setAttribute("idCheck", "Mã nhân viên bị trùng");
+										request.setAttribute("departmentIDlist", dpbo.getListOfField("ID"));
+										if(originID != null) {
+											request.setAttribute("editedStaff", stbo.getByField("IDNV", originID));
+										}
+										destination = "/editForm.jsp";
+									}
+									else {
+										stbo.editStaff(originID, idInput, nameInput, departmentIDinput, addressInput);
+										request.setAttribute("staffList", stbo.view());
+										destination = "/editStaff.jsp";
+									}
+								}
+
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+
+				} 
+				else {
+					try {
+						request.setAttribute("editedStaff", stbo.getByField("IDNV", staffID));
+						request.setAttribute("departmentIDlist", dpbo.getListOfField("ID"));
+						destination = "/editForm.jsp";
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+			
+			
 			getServletContext().getRequestDispatcher(destination)
 			.forward(request, response);
 			break;
