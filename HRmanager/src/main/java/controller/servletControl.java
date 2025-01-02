@@ -394,11 +394,25 @@ public class servletControl extends HttpServlet{
 										destination = "/editStaff.jsp";
 									}
 								}
+								else {
+									stbo.editStaff(originID, idInput, nameInput, departmentIDinput, addressInput);
+									request.setAttribute("staffList", stbo.view());
+									destination = "/editStaff.jsp";
+								}
 
 						} catch (SQLException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
+					}
+					else {
+						try {
+							request.setAttribute("staffList", stbo.view());
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						destination = "/editStaff.jsp";
 					}
 
 				} 
@@ -413,8 +427,6 @@ public class servletControl extends HttpServlet{
 					}
 				}
 			}
-			
-			
 			getServletContext().getRequestDispatcher(destination)
 			.forward(request, response);
 			break;
